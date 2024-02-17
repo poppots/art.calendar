@@ -1,7 +1,7 @@
 <x-app-layout>
     <body>
         <h1>ART Event</h1>
-        <a href='/posts/create'>create</a>
+        <a href='/posts/create'>[イベント作成]</a>
         <div class='posts'>
             @foreach ($posts as $post)
                 <div class='post'>
@@ -15,7 +15,7 @@
                     <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post">
                         @csrf
                         @method('DELETE')
-                        <button type="button" onclick="deletePost({{ $post->id }})">delete</button> 
+                        <button type="button" onclick="deletePost({{ $post->id }})">[削除]</button> 
                     </form>
                 </div>
             @endforeach
