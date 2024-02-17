@@ -16,8 +16,8 @@
             <div class="image">
                 <input type="file" name="image">
             </div>
-            <input type="submit" value="保存"/>
+            <input type="submit" value="【保存】"/>
         </form>
-        <div class="back">[<a href="/">back</a>]</div>
+        <div class="back">[<a href="/">戻る</a>]</div>
     </body>
 </x-app-layout>
