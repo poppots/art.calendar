@@ -48,8 +48,8 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);  
     }
     
-    public function getOwnPaginateByLimit(int $limit_count = 5)
+    public function getUserPaginateByLimit(int $limit_count = 2)
     {
-        return $this::with('posts')->find(Auth::id())->posts()->orderBy('updated_at', 'DESC')->paginate($limit_count);
+        return $this->posts()->with('user')->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
 }

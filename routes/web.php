@@ -11,10 +11,11 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/user', [UserController::class, 'index']);
+
+Route::get('/user/{user}', [UserController::class, 'index']);
 
 Route::controller(PostController::class)->middleware(['auth'])->group(function(){
-    Route::get('/', 'index')->name('index');
+    Route::get('/', 'index')->name('posts.index');
     Route::post('/posts', 'store')->name('store');
     Route::get('/posts/create', 'create')->name('create');
     Route::get('/posts/{post}', 'show')->name('show');
