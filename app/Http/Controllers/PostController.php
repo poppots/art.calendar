@@ -4,13 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Http\Requests\PostRequest;
+use Illuminate\Http\Request;
 use Cloudinary;
 
 class PostController extends Controller
 {
-    public function index(Post $post)
+    public function index(Post $post, Request $request)
     {
-        return view('posts.index')->with(['posts' => $post->getPaginateByLimit()]);
+        $keyword = $request->input('keyword');
+
+        $query = Post::query();
+
+        if(!empty($keyword)) {
+            $query->where('title', 'LIKE', "%{$keyword}%")
+                ->orWhere('body', 'LIKE', "%{$keyword}%");
+        }
+
+        $posts = $query->orderBy('updated_at', 'DESC')->paginate(2)->withQueryString();
+        
+        return view('posts.index', compact('posts', 'keyword'));
     }
 
     public function show(Post $post)
@@ -47,9 +59,8 @@ class PostController extends Controller
             $image_url = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
             $input_post += ['image_url' => $image_url];
         }
-        $input_post += ['user_id' => $request->user()->id];
+        $input_post += ['user_id' => $request->user()->id]; 
         $post->fill($input_post)->save();
-    
         return redirect('/posts/' . $post->id);
     }
     

@@ -4,7 +4,7 @@
         <form action="/posts" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="title">
-                <h2>イベントタイトル</h2>
+                <h2>イベント名</h2>
                 <input type="text" name="post[title]" placeholder="タイトル" value="{{ old('post.title') }}"/>
                 <p class="title__error" style="color:red">{{ $errors->first('post.title') }}</p>
             </div>
@@ -16,7 +16,7 @@
             <div class="image">
                 <input type="file" name="image">
             </div>
-            <input type="submit" value="【保存】"/>
+                <input type="submit" value="【投稿】"/>
         </form>
         <div class="back">[<a href="/">戻る</a>]</div>
     </body>
