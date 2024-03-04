@@ -69,4 +69,13 @@ class PostController extends Controller
         $post->delete();
         return redirect('/');
     }
+    
+    public function bookmark_posts()
+    {
+        $posts = \Auth::user()->bookmark_posts()->orderBy('created_at', 'desc')->paginate(2);
+        $data = [
+            'posts' => $posts,
+        ];
+        return view('posts.bookmarks', $data);
+    }
 }

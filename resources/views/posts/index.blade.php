@@ -13,6 +13,10 @@
             <a href='/posts/create'>【新規投稿】</a>
         </div>
         
+        <div>
+            <a href="/bookmarks">【保存したイベント】</a>
+        </div>
+        
         <div>----------イベント一覧----------</div>
         
         <div class='posts'>
@@ -31,7 +35,9 @@
                         <button type="button" onclick="deletePost({{ $post->id }})">[削除]</button> 
                     </form>
                     @endif
+                    
                     <a href="/user/{{ $post->user_id }}">投稿者：{{ $post->user->name }}</a>
+                    
                 </div>
             @endforeach
         </div>
