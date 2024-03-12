@@ -5,13 +5,13 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BookmarkController;
+use App\Http\Controllers\ApiTestController;
 use Illuminate\Support\Facades\Route;
 
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
 
 Route::get('/user/{user}', [UserController::class, 'index']);
 
@@ -34,6 +34,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/posts/{post}/bookmark', [BookmarkController::class, 'store'])->name('bookmark.store');
     Route::delete('/posts/{post}/unbookmark', [BookmarkController::class, 'destroy'])->name('bookmark.destroy');
     Route::get('/bookmarks', [PostController::class, 'bookmark_posts'])->name('bookmarks');
+    Route::get('/api/{post}',[ApiTestController::class, 'calendar']);
 });
 
 require __DIR__.'/auth.php';
