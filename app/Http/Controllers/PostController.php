@@ -20,7 +20,7 @@ class PostController extends Controller
                 ->orWhere('body', 'LIKE', "%{$keyword}%");
         }
 
-        $posts = $query->orderBy('updated_at', 'DESC')->paginate(2)->withQueryString();
+        $posts = $query->orderBy('updated_at', 'DESC')->paginate(3)->withQueryString();
         
         return view('posts.index', compact('posts', 'keyword'));
     }
@@ -72,7 +72,7 @@ class PostController extends Controller
     
     public function bookmark_posts()
     {
-        $posts = \Auth::user()->bookmark_posts()->orderBy('created_at', 'desc')->paginate(2);
+        $posts = \Auth::user()->bookmark_posts()->orderBy('created_at', 'desc')->paginate(3);
         $data = [
             'posts' => $posts,
         ];

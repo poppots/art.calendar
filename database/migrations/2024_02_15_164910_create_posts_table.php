@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('title', 50);
             $table->string('body', 200);
             $table->string('image_url')->nullable();
+            $table->dateTime('start');
+            $table->dateTime('end');
             $table->timestamps();
             $table->softDeletes();
         });
